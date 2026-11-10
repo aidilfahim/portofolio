@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4efe5">
+    <title>Aidhil Fahim Mubarraq — Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f4efe5;
+            --paper-dark: #e9e0d1;
+            --ink: #202b25;
+            --muted: #716e62;
+            --line: #d7cebd;
+            --rust: #b34d32;
+            --rust-light: #f0dfd5;
+            --forest: #263d32;
+            --gold: #c89b4b;
+            --serif: "DM Serif Display", Georgia, serif;
+            --sans: "DM Sans", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        a:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; }
+        .shell { width: min(1050px, calc(100% - 48px)); margin-inline: auto; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgb(244 239 229 / 94%);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(12px);
+        }
+        .nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .brand { display: flex; align-items: center; gap: 11px; }
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            background: var(--rust);
+            color: var(--paper);
+            font-family: var(--serif);
+            font-size: 19px;
+            border-radius: 50%;
+        }
+        .brand-copy { display: grid; gap: 2px; }
+        .brand-copy strong { font-size: 12px; letter-spacing: .12em; }
+        .brand-copy span, .nav-links { color: var(--muted); font-size: 11px; }
+        .nav-links { display: flex; align-items: center; gap: 27px; }
+        .nav-links a { transition: color .2s ease; }
+        .nav-links a:hover { color: var(--rust); }
+
+        main { padding-bottom: 72px; }
+        .hero {
+            min-height: 550px;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: 58px;
+            padding-block: 74px 84px;
+            border-bottom: 1px solid var(--line);
+        }
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 22px;
+            color: var(--rust);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+        }
+        .eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            max-width: 610px;
+            margin-bottom: 20px;
+            font: 400 clamp(48px, 7vw, 78px)/.99 var(--serif);
+            letter-spacing: -.035em;
+        }
+        h1 em { color: var(--rust); font-style: normal; }
+        .intro { max-width: 510px; margin-bottom: 27px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+        .role {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--forest);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+        .role::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+        .portrait-wrap { position: relative; width: min(100%, 340px); justify-self: end; }
+        .portrait-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            border: 1px solid var(--rust);
+            border-radius: 48% 48% 8px 8px;
+            pointer-events: none;
+        }
+        .portrait {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            border-radius: 48% 48% 8px 8px;
+            background: var(--paper-dark);
+            object-position: center;
+        }
+        .portrait-note {
+            position: absolute;
+            z-index: 2;
+            left: -32px;
+            bottom: 30px;
+            padding: 13px 17px;
+            background: var(--forest);
+            color: var(--paper);
+            font-size: 10px;
+            letter-spacing: .12em;
+            line-height: 1.7;
+            text-transform: uppercase;
+        }
+
+        .section { padding-top: 70px; }
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 24px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid var(--line);
+        }
+        .section-number { color: var(--rust); font-size: 11px; font-weight: 700; letter-spacing: .1em; }
+        h2 { margin: 0; font: 400 32px/1.1 var(--serif); }
+        .experience-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+            padding: 27px 30px;
+            background: var(--forest);
+            color: var(--paper);
+            border-radius: 4px;
+        }
+        .experience-card h3, .project-card h3 { margin-bottom: 9px; font: 400 25px/1.2 var(--serif); }
+        .experience-card p { max-width: 630px; margin: 0; color: #d2d7cd; font-size: 13px; line-height: 1.75; }
+        .tag {
+            display: inline-block;
+            padding: 8px 11px;
+            color: var(--forest);
+            background: #e4d7b8;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .education-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+        .education-item { min-height: 137px; padding: 20px 21px; border-left: 1px solid var(--line); }
+        .education-item:first-child { border-left: 0; padding-left: 0; }
+        .education-item span, .activity-card p {
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+        .education-item h3 { margin: 11px 0 0; font-size: 15px; line-height: 1.55; }
+        .education-item p { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+
+        .activity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .activity-card { padding: 22px; background: var(--paper-dark); }
+        .activity-card h3 { margin-bottom: 8px; font-size: 15px; }
+        .activity-card p { margin: 0; font-weight: 500; letter-spacing: .02em; text-transform: none; }
+
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill {
+            display: inline-block;
+            padding: 11px 16px;
+            border: 1px solid var(--line);
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .skill:hover, .skill:focus-visible, .skill:active { border-color: var(--forest); background: var(--forest); color: var(--paper); }
+
+        .project-card { padding: 31px; background: var(--rust-light); border-left: 4px solid var(--rust); }
+        .project-top { display: flex; justify-content: space-between; gap: 20px; align-items: start; }
+        .project-index { color: var(--rust); font: 400 34px/1 var(--serif); }
+        .project-card h3 { max-width: 650px; color: var(--ink); }
+        .project-card > p { max-width: 720px; margin: 0 0 22px; color: #5e594f; font-size: 13px; line-height: 1.8; }
+        .tech-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-list span { padding: 7px 10px; background: var(--paper); color: var(--forest); font-size: 10px; font-weight: 700; }
+        .project-link { margin-top: 16px; }
+        footer { padding: 22px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+        .footer-inner { display: flex; justify-content: space-between; gap: 12px; }
+
+        @media (max-width: 700px) {
+            .shell { width: min(100% - 36px, 540px); }
+            .nav { min-height: 68px; }
+            .nav-links { gap: 14px; font-size: 10px; }
+            .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+            .hero { min-height: auto; grid-template-columns: 1fr; gap: 42px; padding-block: 62px 60px; }
+            .hero-copy { order: 1; }
+            .portrait-wrap { order: 0; width: min(72%, 270px); justify-self: center; margin-right: 12px; }
+            .portrait-note { left: -24px; }
+            h1 { font-size: clamp(47px, 13vw, 68px); }
+            .section { padding-top: 54px; }
+            h2 { font-size: 28px; }
+            .experience-card { grid-template-columns: 1fr; padding: 23px; }
+            .tag { justify-self: start; }
+            .education-list { grid-template-columns: 1fr; }
+            .education-item, .education-item:first-child { min-height: 0; padding: 17px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+            .education-item:last-child { border-bottom: 0; }
+            .activity-grid { grid-template-columns: 1fr; }
+            .project-card { padding: 23px; }
+            .footer-inner { flex-direction: column; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <nav class="nav shell" aria-label="Navigasi utama">
+            <a class="brand" href="#home" aria-label="Aidhil Fahim Mubarraq, ke beranda">
+                <span class="brand-mark">AF</span>
+                <span class="brand-copy"><strong>AIDHIL FAHIM</strong><span>PORTOFOLIO · 2026</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">Tentang</a>
+                <a href="#experience">Pengalaman</a>
+                <a href="#education">Pendidikan</a>
+                <a href="#projects">Proyek</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="shell">
+        <section class="hero" id="home">
+            <div class="hero-copy" id="about">
+                <h1>Halo, saya <em>Aidhil.</em></h1>
+                <p class="intro">Siswa SMK yang tertarik membangun aplikasi web yang berguna. Saya senang mengubah ide menjadi sistem yang rapi, fungsional, dan mudah dipakai—sambil terus belajar hal baru di dunia teknologi.</p>
+                <span class="role">Junior Web Developer</span>
+            </div>
+            <div class="portrait-wrap">
+                <img class="portrait" src="fotoprofil.png" alt="Foto Aidhil Fahim Mubarraq">
+                <span class="portrait-note">Web development<br>Jakarta, Indonesia</span>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="section-heading"><span class="section-number">01</span><h2>Pengalaman</h2></div>
+            <article class="experience-card">
+                <div>
+                    <h3>Praktik Kerja Lapangan (PKL) / Magang</h3>
+                    <p>Terlibat langsung dalam lingkungan riset teknologi dan pengembangan sistem berbasis web di instansi pemerintah.</p>
+                </div>
+                <span class="tag">BRIN · Badan Riset dan Inovasi Nasional</span>
+            </article>
+        </section>
+
+        <section class="section" id="education">
+            <div class="section-heading"><span class="section-number">02</span><h2>Perjalanan pendidikan</h2></div>
+            <div class="education-list">
+                <article class="education-item">
+                    <span>Pendidikan dasar</span>
+                    <h3>MI Madrasah Ibtidaiyah Nurul Hidayah</h3>
+                    <p>2016–2021</p>
+                </article>
+                <article class="education-item">
+                    <span>Menengah pertama</span>
+                    <h3>SMPN 212 Jakarta</h3>
+                    <p>2021–2024</p>
+                </article>
+                <article class="education-item">
+                    <span>Kejuruan · Rekayasa Perangkat Lunak</span>
+                    <h3>SMKN 20 Jakarta</h3>
+                    <p>2024–2027 · Saat ini: Kelas XI</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-heading"><span class="section-number">03</span><h2>Sertifikasi & aktivitas</h2></div>
+            <div class="activity-grid">
+                <article class="activity-card">
+                    <h3>Peserta Uji Kompetensi Keahlian (UKK)</h3>
+                    <p>SMKN 20 Jakarta · 2026</p>
+                </article>
+                <article class="activity-card">
+                    <h3>Pengembangan diri & eksplorasi tech stack</h3>
+                    <p>Belajar mandiri HTML, CSS, JavaScript, dan Laravel</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="section-heading"><span class="section-number">04</span><h2>Alat yang saya gunakan</h2></div>
+            <div class="skills" aria-label="Keahlian dan teknologi">
+                <span class="skill">Laravel & PHP</span>
+                <span class="skill">Tailwind CSS</span>
+                <span class="skill">PostgreSQL</span>
+                <span class="skill">Git & Postman</span>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section-heading"><span class="section-number">05</span><h2>Proyek pilihan</h2></div>
+            <article class="project-card">
+                <div class="project-top">
+                    <h3>Sistem Informasi Pendaftaran Ekstrakurikuler SMKN 20 Jakarta</h3>
+                    <span class="project-index">01</span>
+                </div>
+                <p>Aplikasi manajemen ekstrakurikuler sekolah dengan fitur validasi admin, pembatasan kuota otomatis, efek glassmorphism, integrasi SweetAlert2, serta laporan berbasis dokumen.</p>
+                <div class="tech-list" aria-label="Teknologi proyek">
+                    <span>Laravel</span>
+                    <span>Tailwind CSS</span>
+                    <span>PostgreSQL</span>
+                </div>
+                <a class="skill project-link" href="https://github.com/aidilfahim/eskul-smkn20" target="_blank" rel="noopener noreferrer" aria-label="Lihat kode proyek di GitHub (terbuka di tab baru)">Lihat di GitHub ↗</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner shell">
+            <span>&copy; 2026 Aidhil Fahim Mubarraq</span>
+            <span>Dibuat dengan rasa ingin tahu di Jakarta.</span>
+        </div>
+    </footer>
+</body>
+</html>
